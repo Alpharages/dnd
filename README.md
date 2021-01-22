@@ -1,12 +1,7 @@
-# Angular 2 Drag-and-Drop [![npm version](https://badge.fury.io/js/ng2-dnd.svg)](https://badge.fury.io/js/ng2-dnd) [![npm monthly downloads](https://img.shields.io/npm/dm/ng2-dnd.svg?style=flat-square)](https://www.npmjs.com/package/ng2-dnd)
+# Angular 2 Drag-and-Drop
 Angular 2 Drag-and-Drop without dependencies.
 
-Follow me [![twitter](https://img.shields.io/twitter/follow/akopkokhyants.svg?style=social&label=%20akopkokhyants)](https://twitter.com/akopkokhyants) to be notified about new releases.
-
-[![Build Status](https://travis-ci.org/akserg/ng2-dnd.svg?branch=master)](https://travis-ci.org/akserg/ng2-dnd)
-[![Dependency Status](https://david-dm.org/akserg/ng2-dnd.svg)](https://david-dm.org/akserg/ng2-dnd)
-[![devDependency Status](https://david-dm.org/akserg/ng2-dnd/dev-status.svg)](https://david-dm.org/akserg/ng2-dnd#info=devDependencies)
-[![Known Vulnerabilities](https://snyk.io/test/github/akserg/ng2-dnd/badge.svg)](https://snyk.io/test/github/akserg/ng2-dnd)
+Special Thanks to [![twitter](https://img.shields.io/twitter/follow/akopkokhyants.svg?style=social&label=%20akopkokhyants)](https://twitter.com/akopkokhyants) who has created this awesome package
 
 _Some of these APIs and Components are not final and are subject to change!_
 
@@ -16,16 +11,12 @@ The library uses [ng-packagr](https://github.com/dherges/ng-packagr) to transpil
 - The npm package can be consumed by `Angular CLI`, `Webpack`, or `SystemJS`
 - Creates type definitions (`.d.ts`)
 - Generates Ahead-of-Time metadata (`.metadata.json`)
-- Auto-discovers and bundles secondary entry points such as `@my/foo`, `@my/foo/testing`, `@my/foo/bar`
+- Auto-discovers and bundles secdary entry points such as `@my/foo`, `@my/foo/testing`, `@my/foo/bar`
 
 ## Installation
 ```bash
-npm install ng2-dnd --save
+npm install @alpharages/dnd --save
 ```
-
-## Demo
-- Webpack demo available [here](https://angular-dxqjhj.stackblitz.io)
-- SystemJS demo available [here](http://embed.plnkr.co/JbG8Si)
 
 ## Usage
 If you use SystemJS to load your files, you might have to update your config:
@@ -33,13 +24,13 @@ If you use SystemJS to load your files, you might have to update your config:
 ```js
 System.config({
     map: {
-        'ng2-dnd': 'node_modules/ng2-dnd/bundles/ng2-dnd.umd.js'
+        '@alpharages/dnd': 'node_modules/@alpharages/dnd/bundles/dnd.umd.js'
     }
 });
 ```
 
 #### 1. Add the default styles
-- Import the `style.css` into your web page from `node_modules/ng2-dnd/bundles/style.css`
+- Import the `style.css` into your web page from `node_modules/@alpharages/dnd/bundles/style.css`
 
 #### 2. Import the `DndModule`
 Import `DndModule.forRoot()` in the NgModule of your application.
@@ -48,7 +39,7 @@ The `forRoot` method is a convention for modules that provide a singleton servic
 ```ts
 import {BrowserModule} from "@angular/platform-browser";
 import {NgModule} from '@angular/core';
-import {DndModule} from 'ng2-dnd';
+import {DndModule} from '@alpharages/dnd';
 
 @NgModule({
     imports: [
@@ -130,7 +121,7 @@ import {Component} from '@angular/core';
                 <div class="panel panel-default" libDndDraggable [dragEnabled]="true">
                     <div class="panel-body">
                         <div>
-                            <span dnd-draggable-handle>=</span>&nbsp;
+                            <span libDndDraggable-handle>=</span>&nbsp;
                             Drag Handle
                         </div>
                     </div>
@@ -228,7 +219,7 @@ import {Component} from '@angular/core';
         <div class="panel panel-success">
             <div class="panel-heading">Available to drag</div>
             <div class="panel-body">
-                <div class="panel panel-default" dnd-draggable [dragEnabled]="true" [dragData]="transferData">
+                <div class="panel panel-default" libDndDraggable [dragEnabled]="true" [dragData]="transferData">
                     <div class="panel-body">
                         <div>Drag Me</div>
                         <div>{{transferData | json}}</div>
@@ -238,7 +229,7 @@ import {Component} from '@angular/core';
         </div>
     </div>
     <div class="col-sm-3">
-        <div dnd-droppable class="panel panel-info" (onDropSuccess)="transferDataSuccess($event)">
+        <div libDndDroppable class="panel panel-info" (dropSuccess)="transferDataSuccess($event)">
             <div class="panel-heading">Place to drop (Items:{{receivedData.length}})</div>
             <div class="panel-body">
                 <div [hidden]="!receivedData.length > 0" *ngFor="let data of receivedData">{{data | json}}</div>
@@ -274,13 +265,13 @@ import { Component } from '@angular/core';
         <div class="panel panel-success">
             <div class="panel-heading">Available to drag</div>
             <div class="panel-body">
-                <div class="panel panel-default" dnd-draggable [dragData]="6">
+                <div class="panel panel-default" libDndDraggable [dragData]="6">
                     <div class="panel-body">dragData = 6</div>
                 </div>
-                <div class="panel panel-default" dnd-draggable [dragData]="10">
+                <div class="panel panel-default" libDndDraggable [dragData]="10">
                     <div class="panel-body">dragData = 10</div>
                 </div>
-                <div class="panel panel-default" dnd-draggable [dragData]="30">
+                <div class="panel panel-default" libDndDraggable [dragData]="30">
                     <div class="panel-body">dragData = 30</div>
                 </div>
             </div>
@@ -292,7 +283,7 @@ import { Component } from '@angular/core';
 {{ '}' }}</pre>
         <div class="row">
             <div class="col-sm-6">
-                <div dnd-droppable class="panel panel-info" [allowDrop]="allowDropFunction(box1Integer)" (onDropSuccess)="addTobox1Items($event)">
+                <div libDndDroppable class="panel panel-info" [allowDrop]="allowDropFunction(box1Integer)" (dropSuccess)="addTobox1Items($event)">
                     <div class="panel-heading">
                         Multiples of
                         <input type="number" [(ngModel)]="box1Integer" style="width: 4em">
@@ -304,7 +295,7 @@ import { Component } from '@angular/core';
                 </div>
             </div>
             <div class="col-sm-6">
-                <div dnd-droppable class="panel panel-warning" [allowDrop]="allowDropFunction(box2Integer)" (onDropSuccess)="addTobox2Items($event)">
+                <div libDndDroppable class="panel panel-warning" [allowDrop]="allowDropFunction(box2Integer)" (dropSuccess)="addTobox2Items($event)">
                     <div class="panel-heading">
                         Multiples of
                         <input type="number" [(ngModel)]="box2Integer" style="width: 4em">
@@ -320,7 +311,7 @@ import { Component } from '@angular/core';
 </div>
 `
 })
-export class CustomFunctionDndComponent {
+export class CustomFunctidndComponent {
     box1Integer: number = 3;
     box2Integer: number = 10;
 
@@ -358,7 +349,7 @@ import { Component } from '@angular/core';
             <div class="panel-heading">Available products</div>
             <div class="panel-body">
                 <div *ngFor="let product of availableProducts" class="panel panel-default"
-                    dnd-draggable [dragEnabled]="product.quantity>0" [dragData]="product" (onDragSuccess)="orderedProduct($event)" [dropZones]="['demo1']">
+                    libDndDraggable [dragEnabled]="product.quantity>0" [dragData]="product" (dragSuccess)="orderedProduct($event)" [dropZones]="['demo1']">
                     <div class="panel-body">
                         <div [hidden]="product.quantity===0">{{product.name}} - \${{product.cost}}<br>(available: {{product.quantity}})</div>
                         <div [hidden]="product.quantity>0"><del>{{product.name}}</del><br>(NOT available)</div>
@@ -368,7 +359,7 @@ import { Component } from '@angular/core';
         </div>
     </div>
     <div class="col-sm-3">
-        <div dnd-droppable (onDropSuccess)="addToBasket($event)" [dropZones]="['demo1']" class="panel panel-info">
+        <div libDndDroppable (dropSuccess)="addToBasket($event)" [dropZones]="['demo1']" class="panel panel-info">
             <div class="panel-heading">Shopping Basket<br>(to pay: \${{totalCost()}})</div>
             <div class="panel-body">
                 <div *ngFor="let product of shoppingBasket" class="panel panel-default">
@@ -576,7 +567,7 @@ import {Component} from '@angular/core';
     <div class="col-sm-6">
         <div class="panel panel-info">
             <div class="panel-heading">Target List</div>
-            <div class="panel-body" dnd-droppable (onDropSuccess)="addTo($event)" [dropZones]="['source-dropZone']">
+            <div class="panel-body" libDndDroppable (dropSuccess)="addTo($event)" [dropZones]="['source-dropZone']">
                 <ul class="list-group">
                     <li *ngFor="let target of targetList" class="list-group-item">
                         {{target.name}}
@@ -642,7 +633,7 @@ import {Component} from '@angular/core';
     <div class="col-sm-6">
         <div class="panel panel-info">
             <div class="panel-heading">Widgets</div>
-            <div class="panel-body" dnd-droppable (onDropSuccess)="addTo($event)" [dropZones]="['widget-dropZone']">
+            <div class="panel-body" libDndDroppable (dropSuccess)="addTo($event)" [dropZones]="['widget-dropZone']">
                 <div *ngFor="let widget of widgets" class="panel panel-default">
                     <div class="panel-body">
                         {{widget.name}}
@@ -759,7 +750,7 @@ Since it is possible to drag and drop one or more files to a drop zone, you need
 ```js
 import {Component} from '@angular/core';
 import {Http, Headers} from '@angular/http';
-import {DND_PROVIDERS, DND_DIRECTIVES} from 'ng2-dnd/ng2-dnd';
+import {DND_PROVIDERS, DND_DIRECTIVES} from '@alpharages/dnd/@alpharages/dnd';
 import {bootstrap} from '@angular/platform-browser-dynamic';
 
 bootstrap(AppComponent, [
@@ -774,8 +765,8 @@ bootstrap(AppComponent, [
 <div class="row">
    
     <div class="col-sm-3">
-        <div dnd-droppable class="panel panel-info"
-            (onDropSuccess)="transferDataSuccess($event)">>
+        <div libDndDroppable class="panel panel-info"
+            (dropSuccess)="transferDataSuccess($event)">>
             <div class="panel-heading">Place to drop</div>
             <div class="panel-body">
             </div>
