@@ -23,7 +23,7 @@ export abstract class AbstractComponent {
   private dragEnabledVar = false;
 
   set dragEnabled(enabled: boolean) {
-    this.dragEnabledVar = !!enabled;
+    this.dragEnabledVar = enabled;
     this.elem.draggable = this.dragEnabledVar;
   }
 
@@ -106,7 +106,7 @@ export abstract class AbstractComponent {
       this._onDragOver(event);
       //
       if (event.dataTransfer != null) {
-        event.dataTransfer.dropEffect = this.config.dropEffect.name;
+        event.dataTransfer.dropEffect = this.config.dropEffect.name as DataTransfer['dropEffect'];
       }
 
       return false;
@@ -136,7 +136,7 @@ export abstract class AbstractComponent {
       if (event.dataTransfer != null) {
         event.dataTransfer.setData('text', '');
         // Change drag effect
-        event.dataTransfer.effectAllowed = this.effectAllowed || this.config.dragEffect.name;
+        event.dataTransfer.effectAllowed = this.effectAllowed as DataTransfer['effectAllowed'] || this.config.dragEffect.name as DataTransfer['effectAllowed'];
         // Change drag image
         if (isPresent(this.dragImage)) {
           if (isString(this.dragImage)) {
